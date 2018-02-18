@@ -41,6 +41,10 @@ func (this *BitWriter) Flush() (int, error) {
 	return int(n), nil
 }
 
+func (this *BitWriter) Remain() int {
+	return int(this.numBits)
+}
+
 func (this *BitWriter) writeByteToStream() error {
 	n, err := this.w.Write([]byte{this.buf})
 	if err != nil {

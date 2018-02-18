@@ -48,6 +48,10 @@ func TestInterface_TestWriteAndFlush(t *testing.T) {
 			}
 		}
 
+		if len(tc.bits)%8 != w.Remain() {
+			t.Errorf("Failed[%d]: Was expecting %d bits to be remaining but got %d",
+				index, len(tc.bits)%8, w.Remain())
+		}
 		if bytes.Compare(buf.Bytes(), tc.preFlush) != 0 {
 			t.Errorf("Failed[%d]: Didnt get expected preflush bytes, got %#v, want %#v",
 				index, buf.Bytes(), tc.preFlush)

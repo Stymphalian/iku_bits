@@ -6,6 +6,7 @@ package bitwriter
 type Interface interface {
 	Writer
 	Flusher
+	Remainder
 }
 
 // Writer writes a single bit into the output stream. There is no guarante that
@@ -23,4 +24,9 @@ type Writer interface {
 // Returns error- nil if okay, error otherwise
 type Flusher interface {
 	Flush() (int, error)
+}
+
+// An interface to determine how bits this write has yet to write to the stream
+type Remainder interface {
+	Remain() int
 }
